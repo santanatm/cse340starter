@@ -244,7 +244,7 @@ VALUES   (
 
 /*********************************************************
                        Assignment 2 
-/*********************************************************/
+*********************************************************/
 
 --Write SQL statements to accomplish the following tasks. Each task should be performed using a single query per task
 
@@ -279,7 +279,7 @@ WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 SELECT inventory.inv_make, classification.classification_name
 FROM public.inventory
 INNER JOIN public.classification ON classification.classification_id = inventory.classification_id 
-WHERE classification.classification_name = 'Sport'
+WHERE classification.classification_name = 'Sport';
 
 
 /* 6. Update all records in the inventory table to add "/vehicles" to the middle of the file path 
