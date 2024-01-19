@@ -108,7 +108,7 @@ html{
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Georgia', sans-serif;
 }
 
 html{
@@ -344,13 +344,16 @@ background-repeat: repeat;
     background-color: rgba(255, 255, 255, 0.5);
 }
 /*end messsage to action*/
+
 /*star list car*/
 ul.listCar li{
     margin-bottom: 18px;
 }
 /*end list car*/
+
 /*full screen Responsive*/
 @media (min-width: 600px) {
+    
     .col-md-3 {
         flex: 0 0 auto;
         width: 25%;
