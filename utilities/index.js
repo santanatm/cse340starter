@@ -7,11 +7,11 @@ const Util = {}
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
   let list = "<ul id='main-menu' class='d-flex justify-content-space-around list-unstyled'>"
-  list += '<li class="txt-decoration-none txt-white py-3 px-2 d-block fs-6"><a href="/" title="Home page">Home</a></li>'
+  list += '<li><a class="txt-decoration-none txt-white py-3 px-2 d-block fs-6" href="/" title="Home page">Home</a></li>'
   data.rows.forEach((row) => {
-    list += "<li class='txt-decoration-none txt-white py-3 px-2 d-block fs-6'>"
+    list += "<li>"
     list +=
-      '<a href="/inv/type/' +
+      '<a class="txt-decoration-none txt-white py-3 px-2 d-block fs-6" href="/inv/type/' +
       row.classification_id +
       '" title="See our inventory of ' +
       row.classification_name +
