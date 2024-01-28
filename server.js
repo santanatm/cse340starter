@@ -9,10 +9,11 @@ const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
-//const static = require("./routes/static")
+const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
-//const inventoryRoute = require('./routes/inventoryRoute')
+const inventoryRoute = require('./routes/inventoryRoute')
 const utilities = require('./utilities/'); // Adjust the path accordingly
+const detailRoute = require('./routes/detailRoute')
 
 
 /* ***********************
@@ -25,8 +26,7 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ***********************
  * Routes
  *************************/
-//app.use(static)
-app.use(require("./routes/static"));
+app.use(static)
 
 // Index route
 //app.get("/", baseController.buildHome)
@@ -35,7 +35,8 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory routes
 //app.use("/inv", inventoryRoute)
-app.use("/inv", require('./routes/inventoryRoute'));
+app.use("/inv", inventoryRoute);
+app.use("/inv", detailRoute);
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

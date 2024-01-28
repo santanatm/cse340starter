@@ -24,8 +24,6 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
-module.exports = Util
-
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
@@ -58,6 +56,33 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+
+
+/* **************************************
+* Build the Detail view HTML
+* ************************************ */
+Util.buildInventoryDetail = async function(data){
+  let grid
+  if(data.length > 0){
+    grid = '<div id="inv-detail">'
+    grid += '<img src="' + data[0].inv_image+'" alt="Image of '+ data[0].inv_make + ' ' + data[0].inv_model +'" >'
+    grid += '<h2 >'+data[0].inv_make+' '+data[0].inv_model+' Details</h2>'
+    grid += '<div id="inv-det">'
+    grid += '<h3><strong>Price: $</strong>'+ new Intl.NumberFormat('en-US').format(data[0].inv_price)+'</h3>'
+    grid += '<h3><strong>Color: </strong>'+data[0].inv_color+'</h3>'
+    grid += '<h3><strong>Miles: </strong>'+data[0].inv_miles+'</h3>'
+    grid += '</div>'
+    grid += '<div id="inv-desc">'
+    grid += '<p ><strong>Description: </strong>'+data[0].inv_description+'</p>'
+    grid += '</div>'
+    grid += '</div>'
+  } else { 
+    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+  }
+  return grid
+}
+
+
 
 /* ****************************************
  * Middleware For Handling Errors
