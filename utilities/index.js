@@ -64,18 +64,20 @@ Util.buildClassificationGrid = async function(data){
 Util.buildInventoryDetail = async function(data){
   let grid
   if(data.length > 0){
-    grid = '<div id="inv-detail">'
-    grid += '<img src="' + data[0].inv_image+'" alt="Image of '+ data[0].inv_make + ' ' + data[0].inv_model +'" >'
-    grid += '<h2 >'+data[0].inv_make+' '+data[0].inv_model+' Details</h2>'
+    grid = '<div style="width:100%"><div style="display:flex;flex-wrap:wrap;width:100%;">';
+    grid += '<div id="inv-detail" class="col-sm-12 col-md-6">'
+    grid += '<img class="img-fluid" src="' + data[0].inv_image+'" alt="Image of '+ data[0].inv_make + ' ' + data[0].inv_model +'" >'
+    grid += '</div><div class="col-sm-12 col-md-6 p-2">';
+    grid += '<h2 class="mb-4">'+data[0].inv_make+' '+data[0].inv_model+' Details</h2>'
     grid += '<div id="inv-det">'
-    grid += '<h3><strong>Price: $</strong>'+ new Intl.NumberFormat('en-US').format(data[0].inv_price)+'</h3>'
-    grid += '<h3><strong>Color: </strong>'+data[0].inv_color+'</h3>'
-    grid += '<h3><strong>Miles: </strong>'+data[0].inv_miles+'</h3>'
+    grid += '<h3 class="mb-4"><strong>Price: $</strong>'+ new Intl.NumberFormat('en-US').format(data[0].inv_price)+'</h3>'
+    grid += '<h3 class="mb-4"><strong>Color: </strong>'+data[0].inv_color+'</h3>'
+    grid += '<h3 class="mb-4"><strong>Miles: </strong>'+data[0].inv_miles+'</h3>'
     grid += '</div>'
-    grid += '<div id="inv-desc">'
+    grid += '<div id="inv-desc" class="mb-4">'
     grid += '<p ><strong>Description: </strong>'+data[0].inv_description+'</p>'
-    grid += '</div>'
-    grid += '</div>'
+    grid += '</div></div>'
+    grid += '</div></div></div>'
   } else { 
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
