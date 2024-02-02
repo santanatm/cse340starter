@@ -88,7 +88,12 @@ html{
 }
 
 /**/
+.li-messages {
+    color: #f10a15;
+    margin-top: 10px;
+    margin-left: 40px;
 
+}
 .bg-dark-gray{
     background-color: #3a3a3a;    
 }
