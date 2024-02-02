@@ -47,10 +47,20 @@ button {
 
 input{
     padding-block: 4px;
-    padding-inline: 60px;
+    padding-inline: 70px;
     margin-top:5px;
     margin-bottom:5px;
     border-radius: 10px;
+}
+
+#pswdBtn {
+    border: 2px solid #0000;
+    border-radius: 5px;
+    padding: 2px;
+    margin-top: 1em;
+    width: 7em;
+    color:red;
+    text-align: center;
 }
 
  form {
