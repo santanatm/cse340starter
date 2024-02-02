@@ -3,15 +3,16 @@
     <% } else {
       res.redirect('/')
     } %>
+<div class="p-5"> 
+    <form>
+        <label for="account_email">Email:</label><br>
+        <input type="email" id="account_email" name="account_email" value=""><br>
+        <label for="account_password">Password:</label><br>
+        <input type="password" id="account_password" name="account_password" value=""><br><br>
+        <button type="submit">Login</button><br><br>
+        <label>No account?</label> <a class= "txt-white" href="/account/register">Sign-up</a> <br>
 
-<h2>Login</h2>
-
-<form>
-  <label for="account_email">Email:</label><br>
-  <input type="email" id="account_email" name="account_email" value=""><br>
-  <label for="account_password">Password:</label><br>
-  <input type="password" id="account_password" name="account_password" value=""><br><br>
-  <button type="submit">Login</button>
-</form> 
-
-<p>No account? <a href="/account/register">Sign-up</a></p>
+    </form> 
+    <br>
+    <br>
+</div>

@@ -20,7 +20,7 @@ html{
     margin-bottom: .5em;
     border: 1px #ccc solid;
     list-style-type: none;
-    flex: 1 1 auto;
+    flex: 1 1 auto; 
    }
 
    #inv-display li img {
@@ -31,6 +31,41 @@ html{
     color: #110101;
     margin-left: 10px;
    }
+
+button {
+    background-color:  white;
+    border-radius: 10px;
+    border: none;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+}
+
+input{
+    padding-block: 4px;
+    padding-inline: 60px;
+    margin-top:5px;
+    margin-bottom:5px;
+    border-radius: 10px;
+}
+
+ form {
+    display: block;
+    border-radius: 10px;
+    margin-top: 0em;
+    border-style:double;
+    top: 60px;
+    left: 100px;
+    width: 350px;
+    padding: 15px;
+    color:white;
+    text-align: center;
+    background-color: rgba(1, 17, 88, 0.959);
+}
 
 /*bigger screens*/
 #inv-display {
