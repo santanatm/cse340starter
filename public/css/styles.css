@@ -78,10 +78,10 @@ input{
 }
 
 input:required:invalid, input:focus:invalid {
-    background-color: rgb(252, 6, 6);
+    background-color: rgb(248, 204, 204);
    }
    input:required:valid {
-    background-color: rgb(177, 186, 137);
+    background-color: rgb(24, 236, 8);
    }
 
 /*bigger screens*/
