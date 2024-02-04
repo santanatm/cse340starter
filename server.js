@@ -17,6 +17,7 @@ const inventoryRoute = require('./routes/inventoryRoute')
 const utilities = require('./utilities/'); // Adjust the path accordingly
 const detailRoute = require('./routes/detailRoute')
 const accountRoute = require('./routes/accountRoute')
+const bodyParser = require("body-parser")
 
 /* ***********************
  * Middleware
@@ -31,6 +32,9 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -110,4 +114,23 @@ const host = process.env.HOST
  *************************/
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
+})
+
+/************************
+ * Routes
+*********************** */
+app.use(require("./routes/static"))
+// Index route
+app.get("/", utilities.handleErrors(baseController.buildHome))
+// Inventory routes
+app.use("/inv", require("./routes/inventoryRoute"))
+// Account routes
+app.use("/account", require("./routes/accountRoute"))
+
+/****************************************************
+ * File Not Found Route - must be last route in list
+ * Place after all routes
+ * **************************************************/
+app.use(async (req, res, next) => {
+  next({ status: 404, message: "Sorry, we appear to have lost that page." })
 })

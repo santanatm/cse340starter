@@ -84,7 +84,24 @@ Util.buildInventoryDetail = async function(data){
   return grid
 }
 
-
+Util.buildClassificationSelect = async function(selected_id = ""){
+  let block;
+  let data = await invModel.getClassifications()
+  if (data.rowCount > 0){
+    block =  '<select id="classificationList" name="classification_id">';
+    block += '<option value="">Select..</option>'
+    data.rows.forEach((row) => {
+      selected = (row.classification_id == selected_id)?"selected":""
+      block += '<option value="'+row.classification_id+'" '+selected+'>'
+      block += row.classification_name
+      block += '</option>'
+    })
+    block += '</select>';
+  }else{
+    block = '<p class="notice">Sorry, we are unable to retrieve a list of classifications at this time, please check the connection to the database.</p>'
+  }
+  return block;
+};
 
 /* ****************************************
  * Middleware For Handling Errors

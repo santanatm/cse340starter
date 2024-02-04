@@ -1,12 +1,23 @@
+
 <% if (title) { %>
     <h1><%= title %></h1>
     <% } else {
       res.redirect('/')
     } %>
+
+<%- messages() %>
+    <% if (errors) { %>
+      <ul class="notice">
+     <% errors.array().forEach(error => { %>
+       <li><%= error.msg %></li>
+    <%  }) %>
+     </ul>
+    <% } %>
+
 <div class="p-5"> 
-    <form>
+    <form action="/account/login" method="post">
         <label for="account_email">Email:</label><br>
-        <input type="email" id="account_email" name="account_email" required placeholder="Enter a valid email address"><br>
+        <input type="email" id="account_email" name="account_email" required placeholder="Enter a valid email address" value="<%- locals.account_email %>" pattern="[a-zA-Z0-9.]{2,46}@[a-zA-Z0-9.]{2,46}.\w"><br>
         <label for="account_password">Password:</label><br>
         <input type="password" id="account_password" name="account_password" value=""><br><br>
         <button type="submit">Login</button><br><br>

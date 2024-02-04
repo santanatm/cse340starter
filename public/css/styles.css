@@ -77,6 +77,13 @@ input{
     background-color: rgba(1, 17, 88, 0.959);
 }
 
+input:required:invalid, input:focus:invalid {
+    background-color: rgb(252, 6, 6);
+   }
+   input:required:valid {
+    background-color: rgb(177, 186, 137);
+   }
+
 /*bigger screens*/
 #inv-display {
     flex-flow: row wrap;
