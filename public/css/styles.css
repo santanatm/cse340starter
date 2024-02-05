@@ -45,6 +45,10 @@ button {
     margin: 4px 2px;
 }
 
+select {
+    color:black;
+    background-color: rgb(193, 228, 122);
+}
 input{
     padding-block: 4px;
     padding-inline: 170px;
@@ -148,6 +152,10 @@ input:required:invalid, input:focus:invalid {
 }
 .bg-dark-gray{
     background-color: #3a3a3a;    
+}
+
+.bg-light-black{
+    background-color: rgb(241, 239, 239);    
 }
 
 .bg-white{
