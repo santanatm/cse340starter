@@ -47,7 +47,7 @@ button {
 
 input{
     padding-block: 4px;
-    padding-inline: 70px;
+    padding-inline: 170px;
     margin-top:5px;
     margin-bottom:5px;
     border-radius: 10px;
@@ -70,7 +70,7 @@ input{
     border-style:double;
     top: 60px;
     left: 100px;
-    width: 350px;
+    width: 650px;
     padding: 15px;
     color:white;
     text-align: center;
