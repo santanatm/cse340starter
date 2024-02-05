@@ -45,13 +45,19 @@ button {
     margin: 4px 2px;
 }
 
+textarea {
+    width: 210px;
+    border-radius: 5px;
+    background-color: rgb(24, 236, 8);
+}
+
 select {
     color:black;
     background-color: rgb(193, 228, 122);
 }
 input{
     padding-block: 4px;
-    padding-inline: 170px;
+    padding-inline: 80px;
     margin-top:5px;
     margin-bottom:5px;
     border-radius: 10px;
@@ -74,7 +80,7 @@ input{
     border-style:double;
     top: 60px;
     left: 100px;
-    width: 650px;
+    width: 350px;
     padding: 15px;
     color:white;
     text-align: center;
