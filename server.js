@@ -5,19 +5,22 @@
 /* ***********************
  * Require Statements
  *************************/
-const session = require("express-session")
-const pool = require('./database/')
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
-const inventoryRoute = require('./routes/inventoryRoute')
-const utilities = require('./utilities/'); // Adjust the path accordingly
-const detailRoute = require('./routes/detailRoute')
-const accountRoute = require('./routes/accountRoute')
+const inventoryRoute = require("./routes/inventoryRoute")
+const accountRoute = require("./routes/accountRoute")
+//const errorRoute = require("./routes/errorRoute")
+const utilities = require("./utilities/")
+const session = require("express-session")
 const bodyParser = require("body-parser")
+const pool = require('./database/')
+const cookieParser = require("cookie-parser")
+
+
 
 /* ***********************
  * Middleware
@@ -32,7 +35,6 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
@@ -42,6 +44,8 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+app.use(cookieParser())
+//app.use(utilities.checkJWTToken)
 
 /* ***********************
  * View Engine and Templates
@@ -55,46 +59,31 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(static)
 
-// Index route
-//app.get("/", baseController.buildHome)
+//Index route
+//app.get("/", function(req,res){
+//  res.render("index", {title:"Home"})
+//})
+app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
-
-
-// Inventory routes
-//app.use("/inv", inventoryRoute)
 app.use("/inv", utilities.handleErrors(inventoryRoute))
-app.use("/inv", utilities.handleErrors(detailRoute));
+app.use("/account", utilities.handleErrors(accountRoute))
+//app.use("/error", utilities.handleErrors(errorRoute))
 
-// Account routes
-app.use("/account", utilities.handleErrors(accountRoute));
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
-})
+});
 
 
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
 *************************/
-/*
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  res.render("errors/error", {
-    title: err.status || 'Server Error',
-    message: err.message,
-    nav
-  })
-})
-*/
-
-app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} 
-  else {message = 'Sorry, we appear to have lost that page.'}
+  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,
@@ -114,23 +103,4 @@ const host = process.env.HOST
  *************************/
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
-})
-
-/************************
- * Routes
-*********************** */
-app.use(require("./routes/static"))
-// Index route
-app.get("/", utilities.handleErrors(baseController.buildHome))
-// Inventory routes
-app.use("/inv", require("./routes/inventoryRoute"))
-// Account routes
-app.use("/account", require("./routes/accountRoute"))
-
-/****************************************************
- * File Not Found Route - must be last route in list
- * Place after all routes
- * **************************************************/
-app.use(async (req, res, next) => {
-  next({ status: 404, message: "Sorry, we appear to have lost that page." })
 })

@@ -1,0 +1,39 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+    <%- messages() %>
+    <% if (errors) { %>
+      <ul class="notice">
+     <% errors.array().forEach(error => { %>
+       <li><%= error.msg %></li>
+    <%  }) %>
+     </ul>
+    <% } %>
+
+    <div id="add-classification">
+        <form id="classForm" action="/inv/addClassification" method="post">
+        <div class="form-wrapper">
+          <div class="form-header">
+            <h2>Add Classification</h2>
+          </div>
+          <div class="form-content">
+            <span class="tip">* Required</span>
+            <div class="form-element">
+              <label>
+                  <span>Classification Name:</span><span class="required">*</span>
+                  <input aria-label="Classification Name" type="text" name="classification_name" aria-required="true" required>
+              </label>
+            </div>
+            <div class="form-submit">
+                <input id="submitButton" type="submit" name="submit" value="Submit">
+            </div>
+          </div>
+          <div class="form-footer">
+            
+          </div>
+        </div>
+        </form>
+      </div>
