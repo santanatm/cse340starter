@@ -55,7 +55,7 @@ accountModel.loginAccount = async function(account_firstname, account_lastname, 
 /* *****************************
 * Return account data using email address
 * ***************************** */
-async function getAccountByEmail (account_email) {
+accountModel.getAccountByEmail = async function  (account_email) {
   try {
     const result = await pool.query(
       'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_email = $1',
