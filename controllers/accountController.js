@@ -64,7 +64,7 @@ async function buildLogin(req, res, next) {
 async function accountLogin (req, res) {
   let nav = await utilities.getNav()
   const { account_email, account_password } = req.body
-  const accountData = await accountModel.getAccountByEmail(account_email)
+  const accountData = await account-model.getAccountByEmail(account_email)
   if (!accountData) {
    req.flash("notice", "Please check your credentials and try again.")
    res.status(400).render("account/login", {

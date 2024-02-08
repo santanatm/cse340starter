@@ -38,19 +38,19 @@ app.use(session({
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
-//Cookie Parser
-app.use(cookieParser())
-
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+
+//Cookie Parser
 app.use(cookieParser())
 
 //Login Process
 app.use(utilities.checkJWTToken)
+
 
 /* ***********************
  * View Engine and Templates
