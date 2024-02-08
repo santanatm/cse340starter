@@ -1,6 +1,9 @@
 /* Account Controller */
 const utilities = require("../utilities")
 const accountModel = require("../models/account-model")
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 
 /* ****************************************
@@ -71,7 +74,8 @@ async function accountLogin (req, res) {
     account_email,
    })
   return
-  }else{
+  }
+  else{
     req.flash("notice", "You are logged in.")
     res.status(200).render("account/login", {
       title: "Login",
@@ -80,18 +84,23 @@ async function accountLogin (req, res) {
       account_email,
      })
   }
-  /*
-  try {
-   if (await bcrypt.compare(account_password, accountData.account_password)) {
-   delete accountData.account_password
-   const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
-   res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
-   return res.redirect("/account/")
-   }
-  } catch (error) {
-   return new Error('Access Forbidden')
-  }
-  */
- }
   
+  try {
+    if (await bcrypt.compare(account_password, accountData.account_password)) {
+    delete accountData.account_password
+    const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+    return res.redirect("/account/")
+    }
+   } catch (error) {
+    return new Error('Access Forbidden')
+   }
+  }
+  
+ /****************************************** */
+ //async function buildManagment(req, res, next) {
+
+ //}
+
+ 
   module.exports = { buildLogin, buildRegister, registerAccount, accountLogin }
