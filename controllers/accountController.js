@@ -112,8 +112,5 @@ async function accountLogin (req, res) {
     })
   }
 
-
- //}
-
  
   module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagment }
