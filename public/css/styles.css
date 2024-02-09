@@ -137,6 +137,10 @@ input:required:invalid, input:focus:invalid {
     color:#1fb9db;
 }
 
+.txt-red{
+    color: red;
+}
+
 .txt-white{
     color:white;
 }

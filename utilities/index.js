@@ -86,12 +86,40 @@ Util.buildInventoryDetail = async function(data){
   return grid
 }
 
+ /**************************************
+   * Build Single Vehicle Inventory Block
+   **************************************/
+ Util.buildSingleInventoryBlock = async function(data){
+  let block
+  vehicle = data[0]
+  if (data.length>0){
+      block ='<div id="vehicle-layout" class="single-vehicle-view">'
+      block += '<div id="details">'
+      block += '<section id="reviews" class="vehicle-detail">'
+      block += '    <img id="vehicle-image" src="'+ vehicle.inv_image
+      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
+      +' on CSE Motors">'
+      block += '</section>'
+      block += '<section id="reviews" class="vehicle-detail">'
+      block += '        <h2>'+vehicle.inv_make+' '+vehicle.inv_model+' Details</h2>  '
+      block += '        <p><b>Price: </b>$' +new Intl.NumberFormat('en-US').format(vehicle.inv_price)+ '</p>'
+      block += '        <p><b>Milage: </b>' +new Intl.NumberFormat('en-US').format(vehicle.inv_miles)+ '</p>'
+      block += '        <p><b>Description: </b>' +vehicle.inv_description+ '</p>'
+      block += '</section>'
+
+      block+='</div>'
+  } else {
+    block += '<p class="notice">Sorry, we were unable to find this vehicle in our inventory.</p>'
+  }
+  return block
+};
+
 Util.buildClassificationSelect = async function(selected_id = ""){
   let block;
   let data = await invModel.getClassifications()
   if (data.rowCount > 0){
     block =  '<select id="classificationList" name="classification_id">';
-    block += '<option value="">Select..</option>'
+    block += '<option value="">Choose a Classification</option>'
     data.rows.forEach((row) => {
       selected = (row.classification_id == selected_id)?"selected":""
       block += '<option value="'+row.classification_id+'" '+selected+'>'
@@ -104,6 +132,11 @@ Util.buildClassificationSelect = async function(selected_id = ""){
   }
   return block;
 };
+
+Util.makeItBorkened = async function(){
+  throw new Error('divide by zero!'); 
+  return 1 / 0;
+}
 
 /* ****************************************
  * Middleware For Handling Errors
@@ -133,6 +166,18 @@ Util.checkJWTToken = (req, res, next) => {
     })
   } else {
    next()
+  }
+ }
+
+ /* ****************************************
+ *  Check Login
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
   }
  }
 

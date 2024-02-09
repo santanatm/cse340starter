@@ -35,14 +35,14 @@
             <div class="form-element">
               <label>
                   <span>Make:</span><span class="required">*</span>
-                  <input aria-label="Vehicle Make" type="text" name="inv_make" required aria-required="true" value="<%= locals.inv_make %>" pattern="[A-Za-z ]{3,20}" >
+                  <input aria-label="Vehicle Make" type="text" name="inv_make" required aria-required="true" value="<%= locals.inv_make %>" pattern="[A-Za-z ]{3,20}" placeholder="Min of 3 characters">
               </label>
             </div>
 
             <div class="form-element">
               <label>
                   <span>Model:</span><span class="required">*</span>
-                  <input aria-label="Vehicle Model" type="text" name="inv_model" required aria-required="true" value="<%= locals.inv_model %>" pattern="[A-Za-z ]{3,20}">
+                  <input aria-label="Vehicle Model" type="text" name="inv_model" required aria-required="true" value="<%= locals.inv_model %>" pattern="[A-Za-z ]{3,20}" placeholder="Min of 3 characters">
               </label>
             </div>
 
@@ -77,7 +77,7 @@
             <div class="form-element">
               <label>
                   <span>Price:</span><span class="required">*</span>
-                  <input aria-label="Vehicle Price" type="text" name="inv_price" required aria-required="true" value="<%= locals.inv_price %>" pattern="\d{4,6}">
+                  <input aria-label="Vehicle Price" type="text" name="inv_price" required aria-required="true" value="<%= locals.inv_price %>" pattern="\d{1,6}">
               </label>
             </div>
 
@@ -99,9 +99,14 @@
                 <input id="submitButton" type="submit" name="submit" value="Update Vehicle">
             </div>
           </div>
+
+<!--          <input type="hidden" name="inv_id"-->
+<!--          % if(locals.inv_id) { %> value="%= locals.inv_id %>" % } %>>   Este código está erroneo-->
+
           <div class="form-footer">
             
           </div>
         </div>
         </form>
       </div>
+      <script src="../../js/inventory.js"></script>
