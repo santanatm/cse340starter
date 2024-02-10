@@ -4,10 +4,27 @@
     res.redirect('/')
   } %>
 
+<%- messages() %>
+
+    <%# if (errors) { %>
+      <ul class="notice">
+     <%# errors.array().forEach(error => { %>
+       <li><%# error.msg %></li>
+    <%#  }) %>
+     </ul>
+    <%# } %>
+
   <%# messages() %>
-  
-    <br>
-    <h2>Welcome New</h2>
-    <br>
-    <p>You're logged in.</p>
-    <br><br>
+  <section class="bg-white position-relative p-5">
+      <br>
+      <h2>Welcome New</h2>
+      <br>
+      <p>You're logged in.</p>
+      <br>
+      <a class= "txt-blue" href="/account/editAccount">Edit Account Information</a> <br>
+      <br>
+      <h2>Inventory Management</h2>
+      <br>
+      <a class= "txt-blue" href="/inv">Manage Inventory</a> <br>
+      <br><br>
+    </section>

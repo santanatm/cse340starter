@@ -27,6 +27,15 @@ async function buildLogin(req, res, next) {
     })
   }
 
+  async function editAccount(req, res, next) {
+    let nav = await utilities.getNav()
+    res.render("account/editAccount", {
+      title: "Edit Account",
+      nav,
+      errors:null
+    })
+  }
+
 /* ****************************************
  * Register Account
  * ************************************ */
@@ -113,4 +122,4 @@ async function accountLogin (req, res) {
   }
 
  
-  module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagment }
+  module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagment, editAccount }

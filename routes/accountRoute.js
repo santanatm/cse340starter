@@ -12,6 +12,8 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
 // Route to build Managment
 router.get("/", utilities.handleErrors(accountController.buildManagment))
+// Route to Edot Account
+router.get("/editAccount", utilities.handleErrors(accountController.editAccount));
 
 // Process the registration data
 router.post(
