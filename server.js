@@ -13,14 +13,12 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
-//const errorRoute = require("./routes/errorRoute")
+const errorRoute = require("./routes/errorRoute")
 const utilities = require("./utilities/")
 const session = require("express-session")
 const bodyParser = require("body-parser")
 const pool = require('./database/')
 const cookieParser = require("cookie-parser")
-
-
 
 /* ***********************
  * Middleware
@@ -44,13 +42,8 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
-
-//Cookie Parser
 app.use(cookieParser())
-
-//Login Process
 app.use(utilities.checkJWTToken)
-
 
 /* ***********************
  * View Engine and Templates
@@ -72,14 +65,12 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", utilities.handleErrors(inventoryRoute))
 app.use("/account", utilities.handleErrors(accountRoute))
-//app.use("/error", utilities.handleErrors(errorRoute))
-
+app.use("/borkened", utilities.handleErrors(errorRoute))
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 });
-
 
 /* ***********************
 * Express Error Handler
