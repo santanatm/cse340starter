@@ -15,7 +15,7 @@
     <% } %>
 
 <div class="p-5"> 
-    <form id="loginForm" action="/account/login" method="post">
+    <form class="form" id="loginForm" action="/account/login" method="post">
         <label for="account_email">Email:</label><br>
         <input type="email" id="account_email" name="account_email" required placeholder="Enter a valid email address" value="<%- locals.account_email %>" pattern="[a-zA-Z0-9.]{2,46}@[a-zA-Z0-9.]{2,46}.\w"><br>
         <label for="account_password">Password:</label><br>

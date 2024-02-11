@@ -73,7 +73,7 @@ input{
     text-align: center;
 }
 
- form {
+ .form {
     display: block;
     border-radius: 10px;
     margin-top: 0em;
@@ -209,6 +209,14 @@ background-repeat: repeat;
     flex-wrap: wrap !important;
   }
 
+.flex-grow-1 {
+    flex-grow: 1 !important;
+  }
+
+.justify-content-right {
+    justify-content:right !important;
+}
+
 .justify-content-between {
     justify-content: space-between !important;
 }
@@ -307,6 +315,8 @@ background-repeat: repeat;
     align-content: space-between;
     align-items: center;
 }
+
+
 
 /*Navegation*/
 .list-unstyled {

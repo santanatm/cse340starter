@@ -20,6 +20,8 @@ const bodyParser = require("body-parser")
 const pool = require('./database/')
 const cookieParser = require("cookie-parser")
 
+
+
 /* ***********************
  * Middleware
  * ************************/
@@ -45,6 +47,8 @@ app.use(function(req, res, next){
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
 
+
+
 /* ***********************
  * View Engine and Templates
  *************************/
@@ -57,20 +61,23 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(static)
 
-//Index route
-//app.get("/", function(req,res){
-//  res.render("index", {title:"Home"})
-//})
 app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", utilities.handleErrors(inventoryRoute))
 app.use("/account", utilities.handleErrors(accountRoute))
 app.use("/borkened", utilities.handleErrors(errorRoute))
+app.use('/logout', (req, res)=>{ 
+  //req.flash("Please log in")
+  res.clearCookie("jwt")
+  return res.redirect("/account/login")
+}); 
+
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 });
+
 
 /* ***********************
 * Express Error Handler
