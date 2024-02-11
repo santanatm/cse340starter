@@ -7,15 +7,16 @@
             <a href="/" title="Return to home page" class="tTile txt-bold">CSE Motors</a>
           </div>
               <% if (locals.loggedin) { %>
-                <span>Welcome, <%- locals.accountData.account_firstname %></span> 
+                <a class = "whithoutLine p-3" href="/account/">Welcome
+                <%- locals.accountData.account_firstname %></a> 
                 <a title="Click to log in" href="/account/"></a>
                 <form method="post" action="/logout">
-                  <button type="submit">Logout</button>
+                  <button class="txt-red" type="submit">Logout</button>
                 </form>
               <% } else { %>
-                <a title="Click to log in" href="/account/login">My Account</a>
+                <a class = "whithoutLine p-3" title="Click to log in" href="/account/login">My Account</a>
               <% } %>
-          </div>
+            
         </div>
     </div>
   </header>
