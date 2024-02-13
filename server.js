@@ -61,17 +61,12 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(static)
 
-//Index route
-//app.get("/", function(req,res){
-//  res.render("index", {title:"Home"})
-//})
 app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", utilities.handleErrors(inventoryRoute))
 app.use("/account", utilities.handleErrors(accountRoute))
 app.use("/borkened", utilities.handleErrors(errorRoute))
 app.use('/logout', (req, res)=>{ 
-  //req.flash("Please log in")
   res.clearCookie("jwt")
   return res.redirect("/account/login")
 }); 
