@@ -59,7 +59,7 @@ validate.addVehicleRules = ()=>{
       //inv_thumbnail, 
       //inv_price, 
       body("inv_price")
-      .isInt({min:1})
+      .isInt({min:4})
       .withMessage("Please provide a valid price for the vehicle."),
       //inv_miles, 
       body("inv_miles")
@@ -130,10 +130,25 @@ validate.checkUpdateVehicleData = async (req, res, next) => {
   next()
 }
 
-validate.deleteVehicleRules= ()=>{
+validate.deleteInventoryRules = () => {
   return [
+    // Inventory Item ID
+    param("inv_id")
+      .isInt({ min: 1 })
+      .withMessage("Invalid inventory Id."),
+  ];
+};
 
-  ]}
-validate.checkDeleteVehicleData,
+validate.checkDeleteInventoryData = async (req, res, next) => {
+  const { inv_id } = req.params;
+  let errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    // Handle validation errors
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+};
+
 
 module.exports = validate

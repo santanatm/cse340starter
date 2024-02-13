@@ -15,7 +15,7 @@
       <br>
       <p>You're logged in.</p>
       <br>
-      <a class= "txt-blue" href="/account/editAccount">Edit Account Information</a> <br>
+      <a class= "txt-blue" href="/account/update/<%- locals.accountData.account_id %>">Edit Account Information</a> <br>
       <br>
       <% if (locals.accountData.account_type == 'Employee' || locals.accountData.account_type == 'Admin') { %>        
         <h3>Inventory Management</h3>
