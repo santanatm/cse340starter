@@ -138,7 +138,7 @@ input:required:invalid, input:focus:invalid {
 }
 
 .txt-red{
-    color: red;
+    color: rgb(170, 26, 26);
 }
 
 .txt-white{
@@ -178,6 +178,14 @@ input:required:invalid, input:focus:invalid {
 
 .bg-sky-blue-light{
     background-color: #06b0d5;    
+}
+
+.bg-light-green{
+    background-color: #4cd791;
+}
+
+.bg-blue{
+background-color: rgba(3, 43, 218, 0.959);
 }
 
 *{
@@ -305,6 +313,10 @@ background-repeat: repeat;
 
 .mb-5 {
     margin-bottom: 3rem !important;
+}
+
+.br-10 {
+    border-radius: 10px;
 }
 
 /*Header*/
