@@ -56,12 +56,10 @@ invModel.getInventoryByClassificationId = async function (classification_id) {
     }
   }
 
-  
   invModel.deleteClassification = async function (classification_name){
     try {
       const data = await pool.query(
-        `Insert into classification (classification_name) 
-        values ($1)`,
+        `delete from public.classification where classification_name = $1 RETURNING *`,
         [classification_name]
       )
       return data.rows
