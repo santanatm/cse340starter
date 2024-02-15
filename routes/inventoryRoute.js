@@ -11,6 +11,7 @@ router.get("/detail/:invId", utilities.handleErrors(invController.buildByInvId))
 router.get("/", utilities.checkLogin, utilities.checkAccountType, utilities.handleErrors(invController.buildManagement));
 router.get("/addVehicle",utilities.checkLogin, utilities.checkAccountType, utilities.handleErrors(invController.buildAddVehicle));
 router.get("/addClassification", utilities.checkLogin, utilities.checkAccountType, utilities.handleErrors(invController.buildAddClassification));
+router.get("/deleteClassification", utilities.checkLogin, utilities.checkAccountType, utilities.handleErrors(invController.buildDeleteClassification));
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 router.get("/edit/:invId", utilities.checkLogin, utilities.checkAccountType, utilities.handleErrors(invController.buildEditInventory))
 router.get("/delete/:invId", utilities.checkLogin, utilities.checkAccountType, utilities.handleErrors(invController.buildDeleteInventory))
@@ -20,6 +21,13 @@ router.post(
     invValidate.addClassificationRules(),
     invValidate.checkAddClassificationData,
     utilities.handleErrors(invController.addClassification)
+);
+
+router.post(
+    "/deleteClassification",
+    invValidate.deleteClassificationRules(),
+    invValidate.checkDeleteClassificationData,
+    utilities.handleErrors(invController.deleteClassification)
 );
 
 router.post(

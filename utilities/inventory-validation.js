@@ -13,6 +13,15 @@ validate.addClassificationRules = ()=>{
  ]
 }
 
+validate.deleteClassificationRules = ()=>{
+  return [
+   // classification name is required and must be string
+   body("classification_name")
+   .trim()
+   .isLength({ min: 1 })
+   .withMessage("Please provide a classification name."), // on error this message is sent.
+  ]
+ }
 validate.checkAddClassificationData = async (req, res, next) => {
     const { classification_name } = req.body
     let errors = []
@@ -29,6 +38,24 @@ validate.checkAddClassificationData = async (req, res, next) => {
     }
     next()
 }
+
+validate.checkDeleteClassificationData = async (req, res, next) => {
+  const { classification_name } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("./inventory/delete-classification", {
+      errors,
+      title: "Delete Classification",
+      nav,
+      classification_name,
+    })
+    return
+  }
+  next()
+}
+
 
 validate.addVehicleRules = ()=>{
     return [

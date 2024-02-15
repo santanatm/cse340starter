@@ -56,6 +56,20 @@ invModel.getInventoryByClassificationId = async function (classification_id) {
     }
   }
 
+  
+  invModel.deleteClassification = async function (classification_name){
+    try {
+      const data = await pool.query(
+        `Insert into classification (classification_name) 
+        values ($1)`,
+        [classification_name]
+      )
+      return data.rows
+    } catch (error) {
+      console.error("deleteClassification error: " + error)
+    }
+  }
+
   invModel.addVehicle = async function(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id){
     try {
       const data = await pool.query(

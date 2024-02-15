@@ -48,6 +48,16 @@ invCont.buildAddClassification = async function (req, res, next){
   })
 }
 
+invCont.buildDeleteClassification = async function (req, res, next){
+  let nav = await utilities.getNav()
+
+  res.render("./inventory/delete-classification", {
+    title: "Delete Classification",
+    nav,
+    errors: null,
+  })
+}
+
 /************************
  *** Add Classification *
  ***********************/
@@ -78,6 +88,38 @@ if (invResult) {
   })
 }
 }
+
+/************************
+ *** Delete Classification *
+ ***********************/
+ invCont.deleteClassification = async function(req, res, next){
+  let nav = await utilities.getNav()
+  const { classification_name } = req.body
+
+  const invResult = await invModel.deleteClassification(
+    classification_name
+  )
+if (invResult) {
+  req.flash(
+    "notice",
+    `Classification Deleted Successfully.`
+  )
+  let nav = await utilities.getNav()
+  res.status(201).render("./inventory/delete-classification", {
+    title: "Delete Classification",
+    nav,
+    errors: null,
+  })
+} else {
+  req.flash("notice", "Sorry, deleting the Classification failed.")
+  res.status(501).render("./inventory/delete-classification", {
+    title: "Delete Classification",
+    nav,
+    errors: null,
+  })
+}
+}
+
 
 invCont.buildManagement = async function (req, res, next){
   let nav = await utilities.getNav()
